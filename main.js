@@ -4,26 +4,49 @@ const navbarIconMenu = document.querySelector('.menu');
 const mobileMenu = document.querySelector('.mobile-menu');
 const navbarShopCart = document.querySelector('.navbar-shopping-cart');
 const shoppingCartContainer = document.querySelector('#shoppingCartContainer');
+const productDetail = document.querySelector('#productDetail');
+const productDetailClose = document.querySelector('.product-detail-close');
 const cardsContainer = document.querySelector('.cards-container');
 
 navbarIconMenu.addEventListener('click', toggleNavbarIconMenu);
 navbarEmail.addEventListener('click', toggleDesktopMenu);
 navbarShopCart.addEventListener('click', toggleshoppingCartContainer);
+productDetailClose.addEventListener('click', closeProductDetailAside);
 
 function toggleNavbarIconMenu() {
   shoppingCartContainer.classList.add('inactive');
+  productDetail.classList.add('inactive');
   mobileMenu.classList.toggle('inactive');
 }
 
 function toggleDesktopMenu() {
   shoppingCartContainer.classList.add('inactive');
+  productDetail.classList.add('inactive');
   desktopMenu.classList.toggle('inactive');
 }
 
 function toggleshoppingCartContainer() {
   desktopMenu.classList.add('inactive');
   mobileMenu.classList.add('inactive');
+  productDetail.classList.add('inactive');
   shoppingCartContainer.classList.toggle('inactive');
+}
+
+function toggleProductDetailContainer() {
+  shoppingCartContainer.classList.add('inactive');
+  desktopMenu.classList.add('inactive');
+  mobileMenu.classList.add('inactive');
+  productDetail.classList.toggle('inactive');
+}
+
+function openProductDetailAside() {
+  productDetail.classList.remove('inactive');
+}
+
+function closeProductDetailAside() {
+  desktopMenu.classList.add('inactive');
+  shoppingCartContainer.classList.add('inactive');
+  productDetail.classList.add('inactive');
 }
 
 /* <div class="product-card">
@@ -65,6 +88,7 @@ function renderProducts(arr) {
   
     const imgCart = document.createElement('img');
     imgCart.setAttribute('src', product.image);
+    imgCart.addEventListener('click', openProductDetailAside);
   
     const productInfo = document.createElement('div');
     productInfo.classList.add('product-info');
